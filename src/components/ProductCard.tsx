@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { Product } from '@/data/products';
+import LikeButton from '@/components/LikeButton';
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCartStore();
@@ -34,6 +35,9 @@ export default function ProductCard({ product }: { product: Product }) {
         />
         <div className="absolute top-3 left-3 px-2.5 py-1 text-xs font-medium bg-white/90 backdrop-blur-sm rounded-md text-foreground z-20">
           {product.brand}
+        </div>
+        <div className="absolute top-3 right-3 z-20">
+          <LikeButton productId={product.id} size="sm" />
         </div>
       </div>
       <div className="p-5 flex flex-col flex-1">

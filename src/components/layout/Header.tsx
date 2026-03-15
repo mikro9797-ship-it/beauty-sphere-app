@@ -3,14 +3,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingBag, Search, Menu } from 'lucide-react';
+import { ShoppingBag, Search, Menu, Heart } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
+import { useFavoritesStore } from '@/store/favoritesStore';
 import SearchModal from '@/components/SearchModal';
 import MobileMenu from '@/components/MobileMenu';
 
 export default function Header() {
   const { getCartCount } = useCartStore();
   const count = getCartCount();
+  const { getFavoritesCount } = useFavoritesStore();
+  const favCount = getFavoritesCount();
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -77,6 +80,18 @@ export default function Header() {
             >
               <Search className="h-5 w-5" />
             </button>
+            <Link
+              href="/favorites"
+              className="p-2 text-foreground/80 hover:text-red-500 transition-colors relative"
+              aria-label="Избранное"
+            >
+              <Heart className={`h-5 w-5 ${favCount > 0 ? 'fill-red-500 text-red-500' : ''}`} />
+              {favCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white animate-scale-in">
+                  {favCount > 99 ? '99+' : favCount}
+                </span>
+              )}
+            </Link>
             <Link
               href="/cart"
               className="p-2 text-foreground/80 hover:text-primary-600 transition-colors relative"

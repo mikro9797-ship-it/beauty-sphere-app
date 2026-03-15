@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: '/', label: 'Главная' },
   { href: '/catalog', label: 'Каталог' },
   { href: '/brands', label: 'Бренды' },
+  { href: '/favorites', label: 'Избранное' },
   { href: '/about', label: 'О Компании' },
   { href: '/contacts', label: 'Контакты' },
   { href: '/cart', label: 'Корзина' },
